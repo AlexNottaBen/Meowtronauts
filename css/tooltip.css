@@ -1,54 +1,54 @@
 [data-tooltip] {
-
     display: inline-block;
     position: relative;
+}
 
-    &::after {
-        content: "?";
-        font-size: 70%;
-        font-weight: bold;
-        vertical-align: super;
-    }
+[data-tooltip]::after {
+    content: "?";
+    font-size: 70%;
+    font-weight: bold;
+    vertical-align: super;
+}
 
-    &::before {
+[data-tooltip]::before {
+    display: block;
+    width: max-content;
+    max-width: 320px;
+    padding: 8px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: small;
+    z-index: 100;
+    content: attr(data-tooltip);
+    background-color: white;
+    border: 2px 2px 0 black;
+    box-shadow: 2px 2px 0 black;
+    visibility: hidden;
+}
+
+[data-tooltip]:hover {
+    cursor: help;
+    text-decoration: black wavy underline;
+    text-decoration-skip-ink: none;
+}
+
+[data-tooltip]:hover::before {
+    visibility: visible;
+}
+
+@media (orientation: portrait) and (pointer: coarse) {
+    [data-tooltip]::before {
+        background-color: black;
+        color: white;
         display: block;
-        width: max-content;
-        max-width: 320px;
-        padding: 8px;
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: small;
-        z-index: 100;
-        content: attr(data-tooltip);
-        background-color: white;
-        border: 2px 2px 0 black;
-        box-shadow: 2px 2px 0 black;
-        visibility: hidden;
-    }
-
-    &:hover {
-        cursor: help;
-        text-decoration: black wavy underline;
-        text-decoration-skip-ink: none;
-
-        &::before {
-            visibility: visible;
-        }
-    }
-
-    @media (orientation: portrait) and (pointer: coarse) {
-        &::before {
-            background-color: black;
-            color: white;
-            display: block;
-            position: fixed;
-            width: 100%;
-            max-width: unset;
-            font-size: 1; /* reset to default */
-            bottom: 0;
-            text-align: center;
-        }
+        position: fixed;
+        width: 100%;
+        max-width: unset;
+        font-size: 1;
+        /* reset to default */
+        bottom: 0;
+        text-align: center;
     }
 }
